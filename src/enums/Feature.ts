@@ -9,9 +9,11 @@ export enum Feature {
   MIGRATE = 'Migrate',
   STAKING = 'Staking',
   TRIDENT = 'Trident',
+  TRIDENT_MIGRATION = 'Trident Migration',
   LIMIT_ORDERS = 'LimitOrders',
   INARI = 'Inari',
   MEOWSHI = 'MEOWSHI',
   VESTING = 'Vesting',
   SUSHIGUARD = 'SushiGuard',
+  SUBGRAPH = 'Subgraph',
 }

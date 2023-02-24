@@ -12,7 +12,7 @@ const RPC = {
   [ChainId.FANTOM_TESTNET]: 'https://rpc.testnet.fantom.network',
   [ChainId.MATIC]: 'https://polygon-rpc.com/',
   [ChainId.MATIC_TESTNET]: 'https://rpc-mumbai.matic.today',
-  [ChainId.XDAI]: 'https://rpc.xdaichain.com',
+  [ChainId.XDAI]: 'https://rpc.gnosischain.com',
   [ChainId.BSC]: 'https://bsc-dataseed.binance.org/',
   [ChainId.BSC_TESTNET]: 'https://data-seed-prebsc-2-s3.binance.org:8545',
   [ChainId.MOONBEAM_TESTNET]: 'https://rpc.testnet.moonbeam.network',
@@ -24,13 +24,18 @@ const RPC = {
   [ChainId.HARMONY_TESTNET]: 'https://api.s0.b.hmny.io',
   [ChainId.OKEX]: 'https://exchainrpc.okex.org',
   [ChainId.OKEX_TESTNET]: 'https://exchaintestrpc.okex.org',
-  [ChainId.ARBITRUM]: 'https://arb-mainnet.g.alchemy.com/v2/e9CG2tS0uQlTg0LXPJC53_9ZIKNOsU8G',
+  [ChainId.ARBITRUM]: 'https://arb1.arbitrum.io/rpc',
   [ChainId.PALM]: 'https://palm-mainnet.infura.io/v3/da5fbfafcca14b109e2665290681e267',
   [ChainId.FUSE]: 'https://rpc.fuse.io',
   [ChainId.CELO]: 'https://forno.celo.org',
   [ChainId.MOONRIVER]: 'https://rpc.moonriver.moonbeam.network',
   [ChainId.TELOS]: 'https://mainnet.telos.net/evm',
   [ChainId.MOONBEAM]: 'https://rpc.api.moonbeam.network',
+  [ChainId.OPTIMISM]: 'https://mainnet.optimism.io',
+  [ChainId.KAVA]: 'https://evm.kava.io',
+  [ChainId.METIS]: 'https://andromeda.metis.io/?owner=1088',
+  [ChainId.ARBITRUM_NOVA]: 'https://a4ba.arbitrum.io/rpc',
+  [ChainId.BOBA_AVAX]: 'https://avax.boba.network',
 }
 
 export default RPC

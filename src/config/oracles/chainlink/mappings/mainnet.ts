@@ -56,13 +56,13 @@ const MAINNET_CHAINLINK_MAPPING = {
     toDecimals: 18,
   },
   // AMP / USD
-  '0x8797ABc4641dE76342b8acE9C63e3301DC35e3d8': {
-    from: '0xfF20817765cB7f73d4bde2e66e067E58D11095C2',
-    to: '0x0000000000000000000000000000000000000001',
-    decimals: 8,
-    fromDecimals: 18,
-    toDecimals: 8,
-  },
+  // '0x8797ABc4641dE76342b8acE9C63e3301DC35e3d8': {
+  //   from: '0xfF20817765cB7f73d4bde2e66e067E58D11095C2',
+  //   to: '0x0000000000000000000000000000000000000001',
+  //   decimals: 8,
+  //   fromDecimals: 18,
+  //   toDecimals: 8,
+  // },
   // AMPL / ETH
   '0x492575FDD11a0fCf2C6C719867890a7648d526eB': {
     from: '0xD46bA6D942050d489DBd938a2C909A5d5039A161',
@@ -488,13 +488,13 @@ const MAINNET_CHAINLINK_MAPPING = {
     toDecimals: 18,
   },
   // HEGIC / ETH
-  '0xAf5E8D9Cd9fC85725A83BF23C52f1C39A71588a6': {
-    from: '0x584bC13c7D411c00c01A62e8019472dE68768430',
-    to: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-    decimals: 18,
-    fromDecimals: 18,
-    toDecimals: 18,
-  },
+  // '0xAf5E8D9Cd9fC85725A83BF23C52f1C39A71588a6': {
+  //   from: '0x584bC13c7D411c00c01A62e8019472dE68768430',
+  //   to: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+  //   decimals: 18,
+  //   fromDecimals: 18,
+  //   toDecimals: 18,
+  // },
   // HEGIC / USD
   '0xBFC189aC214E6A4a35EBC281ad15669619b75534': {
     from: '0x584bC13c7D411c00c01A62e8019472dE68768430',
@@ -512,13 +512,13 @@ const MAINNET_CHAINLINK_MAPPING = {
     toDecimals: 8,
   },
   // HUSD / ETH
-  '0x1B61BAD1495161bCb6C03DDB0E41622c0270bB1A': {
-    from: '0xdF574c24545E5FfEcb9a659c229253D4111d87e1',
-    to: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-    decimals: 18,
-    fromDecimals: 8,
-    toDecimals: 18,
-  },
+  // '0x1B61BAD1495161bCb6C03DDB0E41622c0270bB1A': {
+  //   from: '0xdF574c24545E5FfEcb9a659c229253D4111d87e1',
+  //   to: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+  //   decimals: 18,
+  //   fromDecimals: 8,
+  //   toDecimals: 18,
+  // },
   // INJ / USD
   '0xaE2EbE3c4D20cE13cE47cbb49b6d7ee631Cd816e': {
     from: '0xe28b3B32B6c345A34Ff64674606124Dd5Aceca30',
@@ -656,13 +656,13 @@ const MAINNET_CHAINLINK_MAPPING = {
     toDecimals: 18,
   },
   // MTA / ETH
-  '0x98334b85De2A8b998Ba844c5521e73D68AD69C00': {
-    from: '0xa3BeD4E1c75D00fa6f4E5E6922DB7261B5E9AcD2',
-    to: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-    decimals: 18,
-    fromDecimals: 18,
-    toDecimals: 18,
-  },
+  // '0x98334b85De2A8b998Ba844c5521e73D68AD69C00': {
+  //   from: '0xa3BeD4E1c75D00fa6f4E5E6922DB7261B5E9AcD2',
+  //   to: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+  //   decimals: 18,
+  //   fromDecimals: 18,
+  //   toDecimals: 18,
+  // },
   // MTA / USD
   '0xc751E86208F0F8aF2d5CD0e29716cA7AD98B5eF5': {
     from: '0xa3BeD4E1c75D00fa6f4E5E6922DB7261B5E9AcD2',
@@ -792,13 +792,13 @@ const MAINNET_CHAINLINK_MAPPING = {
     toDecimals: 8,
   },
   // QQQ / USD
-  '0x6b54e83f44047d2168a195ABA5e9b768762167b5': {
-    from: '0x13B02c8dE71680e71F0820c996E4bE43c2F57d15',
-    to: '0x0000000000000000000000000000000000000001',
-    decimals: 8,
-    fromDecimals: 18,
-    toDecimals: 8,
-  },
+  // '0x6b54e83f44047d2168a195ABA5e9b768762167b5': {
+  //   from: '0x13B02c8dE71680e71F0820c996E4bE43c2F57d15',
+  //   to: '0x0000000000000000000000000000000000000001',
+  //   decimals: 8,
+  //   fromDecimals: 18,
+  //   toDecimals: 8,
+  // },
   // RAI / ETH
   '0x4ad7B025127e89263242aB68F0f9c4E5C033B489': {
     from: '0x03ab458634910AaD20eF5f1C8ee96F1D6ac54919',
@@ -1080,13 +1080,13 @@ const MAINNET_CHAINLINK_MAPPING = {
     toDecimals: 8,
   },
   // USDN / USD
-  '0x7a8544894F7FD0C69cFcBE2b4b2E277B0b9a4355': {
-    from: '0x674C6Ad92Fd080e4004b2312b45f796a192D27a0',
-    to: '0x0000000000000000000000000000000000000001',
-    decimals: 8,
-    fromDecimals: 18,
-    toDecimals: 8,
-  },
+  // '0x7a8544894F7FD0C69cFcBE2b4b2E277B0b9a4355': {
+  //   from: '0x674C6Ad92Fd080e4004b2312b45f796a192D27a0',
+  //   to: '0x0000000000000000000000000000000000000001',
+  //   decimals: 8,
+  //   fromDecimals: 18,
+  //   toDecimals: 8,
+  // },
   // USDT / ETH
   '0xEe9F2375b4bdF6387aa8265dD4FB8F16512A1d46': {
     from: '0xdAC17F958D2ee523a2206206994597C13D831ec7',
@@ -1119,14 +1119,14 @@ const MAINNET_CHAINLINK_MAPPING = {
     fromDecimals: 18,
     toDecimals: 18,
   },
-  // WAVES / USD
-  '0x9a79fdCd0E326dF6Fa34EA13c05d3106610798E9': {
-    from: '0x1cF4592ebfFd730c7dc92c1bdFFDfc3B9EfCf29a',
-    to: '0x0000000000000000000000000000000000000001',
-    decimals: 8,
-    fromDecimals: 18,
-    toDecimals: 8,
-  },
+  // // WAVES / USD
+  // '0x9a79fdCd0E326dF6Fa34EA13c05d3106610798E9': {
+  //   from: '0x1cF4592ebfFd730c7dc92c1bdFFDfc3B9EfCf29a',
+  //   to: '0x0000000000000000000000000000000000000001',
+  //   decimals: 8,
+  //   fromDecimals: 18,
+  //   toDecimals: 8,
+  // },
   // WNXM / ETH
   '0xe5Dc0A609Ab8bCF15d3f35cFaa1Ff40f521173Ea': {
     from: '0x0d438F3b5175Bebc262bF23753C1E53d03432bDE',
@@ -1143,14 +1143,14 @@ const MAINNET_CHAINLINK_MAPPING = {
     fromDecimals: 18,
     toDecimals: 18,
   },
-  // WOO / ETH
-  '0x926a93B44a887076eDd00257E5D42fafea313363': {
-    from: '0x4691937a7508860F876c9c0a2a617E7d9E945D4B',
-    to: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
-    decimals: 18,
-    fromDecimals: 18,
-    toDecimals: 18,
-  },
+  // // WOO / ETH
+  // '0x926a93B44a887076eDd00257E5D42fafea313363': {
+  //   from: '0x4691937a7508860F876c9c0a2a617E7d9E945D4B',
+  //   to: '0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2',
+  //   decimals: 18,
+  //   fromDecimals: 18,
+  //   toDecimals: 18,
+  // },
   // XMR / USD
   '0xFA66458Cce7Dd15D8650015c4fce4D278271618F': {
     from: '0x465e07d6028830124BE2E4aA551fBe12805dB0f5',

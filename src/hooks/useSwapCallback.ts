@@ -177,27 +177,16 @@ function getExactInputParams(
   let paths: Path[] = []
 
   for (let legIndex = 0; legIndex < routeLegs; ++legIndex) {
-    const recipentAddress = isLastLeg(legIndex, multiRoute) ? senderAddress : multiRoute.legs[legIndex + 1].poolAddress
-
-    if (multiRoute.legs[legIndex].tokenFrom.address === multiRoute.fromToken.address) {
-      const path: Path = {
-        pool: multiRoute.legs[legIndex].poolAddress,
-        data: defaultAbiCoder.encode(
-          ['address', 'address', 'bool'],
-          [multiRoute.legs[legIndex].tokenFrom.address, recipentAddress, legIndex === routeLegs && receiveToWallet]
-        ),
-      }
-      paths.push(path)
-    } else {
-      const path: Path = {
-        pool: multiRoute.legs[legIndex].poolAddress,
-        data: defaultAbiCoder.encode(
-          ['address', 'address', 'bool'],
-          [multiRoute.legs[legIndex].tokenFrom.address, recipentAddress, legIndex === routeLegs && receiveToWallet]
-        ),
-      }
-      paths.push(path)
+    const lastLeg = isLastLeg(legIndex, multiRoute)
+    const recipentAddress = lastLeg ? senderAddress : multiRoute.legs[legIndex + 1].poolAddress
+    const path: Path = {
+      pool: multiRoute.legs[legIndex].poolAddress,
+      data: defaultAbiCoder.encode(
+        ['address', 'address', 'bool'],
+        [multiRoute.legs[legIndex].tokenFrom.address, recipentAddress, lastLeg && receiveToWallet]
+      ),
     }
+    paths.push(path)
   }
 
   // console.log('slippage?', { amountOut: multiRoute.amountOut, slippage })
@@ -453,6 +442,7 @@ export function useSwapCallArguments(
       if (trade?.outputAmount?.currency.isNative && receiveToWallet)
         actions.push(
           unwrapWETHAction({
+            chainId,
             router: tridentRouterContract,
             recipient,
             amountMinimum: trade?.minimumAmountOut(allowedSlippage).quotient.toString(),
@@ -599,7 +589,7 @@ export function useSwapCallback(
     return {
       state: SwapCallbackState.VALID,
       callback: async function onSwap(): Promise<string> {
-        console.log('onSwap callback')
+        // console.log('onSwap callback')
         const estimatedCalls: SwapCallEstimate[] = await Promise.all(
           swapCalls.map((call) => {
             const { address, calldata, value } = call
@@ -614,12 +604,12 @@ export function useSwapCallback(
                     value,
                   }
 
-            console.log('SWAP TRANSACTION', { tx, value })
+            // console.log('SWAP TRANSACTION', { tx, value })
 
             return library
               .estimateGas(tx)
               .then((gasEstimate) => {
-                console.log('returning gas estimate')
+                // console.log('returning gas estimate')
                 return {
                   call,
                   gasEstimate,
@@ -669,7 +659,7 @@ export function useSwapCallback(
           call: { address, calldata, value },
         } = bestCallOption
 
-        console.log('gasEstimate' in bestCallOption ? { gasLimit: calculateGasMargin(bestCallOption.gasEstimate) } : {})
+        // console.log('gasEstimate' in bestCallOption ? { gasLimit: calculateGasMargin(bestCallOption.gasEstimate) } : {})
 
         const txParams: TransactionRequest = {
           from: account,

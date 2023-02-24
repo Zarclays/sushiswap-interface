@@ -2,7 +2,9 @@
 import { ChainId, SUSHI, Token, WNATIVE } from '@sushiswap/core-sdk'
 
 import * as ARBITRUM from './tokens/arbitrum'
+import * as ARBITRUM_NOVA from './tokens/arbitrum-nova'
 import * as AVALANCHE from './tokens/avalanche'
+import * as BOBA_AVAX from './tokens/boba-avax'
 import * as BSC from './tokens/bsc'
 import * as CELO from './tokens/celo'
 import * as ETHEREUM from './tokens/ethereum'
@@ -10,10 +12,13 @@ import * as FANTOM from './tokens/fantom'
 import * as FUSE from './tokens/fuse'
 import * as HARMONY from './tokens/harmony'
 import * as HECO from './tokens/heco'
+import * as KAVA from './tokens/kava'
 import * as MATIC from './tokens/matic'
+import * as METIS from './tokens/metis'
 import * as MOONBEAM from './tokens/moonbeam'
 import * as MOONRIVER from './tokens/moonriver'
 import * as OKEX from './tokens/okex'
+import * as OPTIMISM from './tokens/optimism'
 import * as PALM from './tokens/palm'
 import * as TELOS from './tokens/telos'
 import * as XDAI from './tokens/xdai'
@@ -73,6 +78,11 @@ const WRAPPED_NATIVE_ONLY: ChainTokenList = {
   [ChainId.FUSE]: [WNATIVE[ChainId.FUSE]],
   [ChainId.TELOS]: [WNATIVE[ChainId.TELOS]],
   [ChainId.MOONBEAM]: [WNATIVE[ChainId.MOONBEAM]],
+  [ChainId.OPTIMISM]: [WNATIVE[ChainId.OPTIMISM]],
+  [ChainId.KAVA]: [WNATIVE[ChainId.KAVA]],
+  [ChainId.METIS]: [WNATIVE[ChainId.METIS]],
+  [ChainId.ARBITRUM_NOVA]: [WNATIVE[ChainId.ARBITRUM_NOVA]],
+  [ChainId.BOBA_AVAX]: [WNATIVE[ChainId.BOBA_AVAX]],
 }
 
 // used to construct intermediary pairs for trading
@@ -120,6 +130,14 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     MATIC.FRAX,
     MATIC.STG,
   ],
+  [ChainId.MATIC_TESTNET]: [
+    ...WRAPPED_NATIVE_ONLY[ChainId.MATIC_TESTNET],
+    new Token(ChainId.MATIC_TESTNET, '0x742DfA5Aa70a8212857966D491D67B09Ce7D6ec7', 6, 'USDC', 'USD Coin'),
+  ],
+  [ChainId.RINKEBY]: [
+    ...WRAPPED_NATIVE_ONLY[ChainId.RINKEBY],
+    new Token(ChainId.RINKEBY, '0x1717A0D5C8705EE89A8aD6E808268D6A826C97A4', 6, 'USDC', 'USD Coin'),
+  ],
   [ChainId.FANTOM]: [
     ...WRAPPED_NATIVE_ONLY[ChainId.FANTOM],
     FANTOM.DAI,
@@ -150,6 +168,7 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     ARBITRUM.MIM,
     ARBITRUM.FRAX,
     ARBITRUM.STG,
+    ARBITRUM.DPX,
   ],
   [ChainId.XDAI]: [...WRAPPED_NATIVE_ONLY[ChainId.XDAI], XDAI.USDC, XDAI.USDT, XDAI.WBTC, XDAI.WETH],
   [ChainId.AVALANCHE]: [
@@ -159,6 +178,8 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     AVALANCHE.DAI,
     // @ts-ignore TYPE NEEDS FIXING
     AVALANCHE.USDT,
+    // @ts-ignore TYPE NEEDS FIXING
+    AVALANCHE.USDTe,
     // @ts-ignore TYPE NEEDS FIXING
     AVALANCHE.WBTC,
     // @ts-ignore TYPE NEEDS FIXING
@@ -221,6 +242,24 @@ export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
     MOONBEAM.WBTC,
     MOONBEAM.FRAX,
   ],
+  [ChainId.OPTIMISM]: [
+    ...WRAPPED_NATIVE_ONLY[ChainId.OPTIMISM],
+    OPTIMISM.USDC,
+    OPTIMISM.USDT,
+    OPTIMISM.DAI,
+    OPTIMISM.WBTC,
+    OPTIMISM.LUSD,
+  ],
+  [ChainId.KAVA]: [...WRAPPED_NATIVE_ONLY[ChainId.KAVA], KAVA.USDC, KAVA.USDT, KAVA.WETH, KAVA.WBTC, KAVA.DAI],
+  [ChainId.METIS]: [...WRAPPED_NATIVE_ONLY[ChainId.METIS], METIS.USDC, METIS.USDT, METIS.WETH, METIS.DAI, METIS.WBTC],
+  [ChainId.ARBITRUM_NOVA]: [
+    ...WRAPPED_NATIVE_ONLY[ChainId.ARBITRUM_NOVA],
+    ARBITRUM_NOVA.USDC,
+    ARBITRUM_NOVA.USDT,
+    ARBITRUM_NOVA.DAI,
+    ARBITRUM_NOVA.WBTC,
+  ],
+  [ChainId.BOBA_AVAX]: [...WRAPPED_NATIVE_ONLY[ChainId.BOBA_AVAX], BOBA_AVAX.AVAX],
 }
 
 export const ADDITIONAL_BASES: {
@@ -608,6 +647,26 @@ export const COMMON_BASES: ChainTokenList = {
     MOONBEAM.WBTC,
     MOONBEAM.FRAX,
   ],
+  [ChainId.OPTIMISM]: [
+    ...WRAPPED_NATIVE_ONLY[ChainId.OPTIMISM],
+    OPTIMISM.USDC,
+    OPTIMISM.USDT,
+    OPTIMISM.DAI,
+    OPTIMISM.WBTC,
+    OPTIMISM.LUSD,
+  ],
+  [ChainId.KAVA]: [...WRAPPED_NATIVE_ONLY[ChainId.KAVA], KAVA.USDC, KAVA.USDT, KAVA.WETH, KAVA.WBTC, KAVA.DAI],
+  [ChainId.METIS]: [...WRAPPED_NATIVE_ONLY[ChainId.METIS], METIS.USDC, METIS.USDT, METIS.WETH, METIS.DAI, METIS.WBTC],
+  [ChainId.ARBITRUM_NOVA]: [
+    ...WRAPPED_NATIVE_ONLY[ChainId.ARBITRUM_NOVA],
+    ARBITRUM_NOVA.USDC,
+    ARBITRUM_NOVA.USDT,
+    ARBITRUM_NOVA.DAI,
+    ARBITRUM_NOVA.WBTC,
+    ARBITRUM_NOVA.MOON,
+    ARBITRUM_NOVA.BRICK,
+  ],
+  [ChainId.BOBA_AVAX]: [...WRAPPED_NATIVE_ONLY[ChainId.BOBA_AVAX], BOBA_AVAX.AVAX],
 }
 
 // used to construct the list of all pairs we consider by default in the frontend
@@ -635,6 +694,14 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
     MATIC.USDT,
     MATIC.FRAX,
     MATIC.STG,
+  ],
+  [ChainId.MATIC_TESTNET]: [
+    ...WRAPPED_NATIVE_ONLY[ChainId.MATIC_TESTNET],
+    new Token(ChainId.MATIC_TESTNET, '0x742DfA5Aa70a8212857966D491D67B09Ce7D6ec7', 6, 'USDC', 'USD Coin'),
+  ],
+  [ChainId.RINKEBY]: [
+    ...WRAPPED_NATIVE_ONLY[ChainId.RINKEBY],
+    new Token(ChainId.RINKEBY, '0x1717A0D5C8705EE89A8aD6E808268D6A826C97A4', 6, 'USDC', 'USD Coin'),
   ],
   [ChainId.FANTOM]: [
     ...WRAPPED_NATIVE_ONLY[ChainId.FANTOM],
@@ -677,6 +744,8 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
     AVALANCHE.DAI,
     // @ts-ignore TYPE NEEDS FIXING
     AVALANCHE.USDT,
+    // @ts-ignore TYPE NEEDS FIXING
+    AVALANCHE.USDTe,
     // @ts-ignore TYPE NEEDS FIXING
     AVALANCHE.WBTC,
     // @ts-ignore TYPE NEEDS FIXING
@@ -737,6 +806,24 @@ export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
     MOONBEAM.WBTC,
     MOONBEAM.FRAX,
   ],
+  [ChainId.OPTIMISM]: [
+    ...WRAPPED_NATIVE_ONLY[ChainId.OPTIMISM],
+    OPTIMISM.USDC,
+    OPTIMISM.USDT,
+    OPTIMISM.DAI,
+    OPTIMISM.WBTC,
+    OPTIMISM.LUSD,
+  ],
+  [ChainId.KAVA]: [...WRAPPED_NATIVE_ONLY[ChainId.KAVA], KAVA.USDC, KAVA.USDT, KAVA.WETH, KAVA.WBTC, KAVA.DAI],
+  [ChainId.METIS]: [...WRAPPED_NATIVE_ONLY[ChainId.METIS], METIS.USDC, METIS.USDT, METIS.WETH, METIS.DAI, METIS.WBTC],
+  [ChainId.ARBITRUM_NOVA]: [
+    ...WRAPPED_NATIVE_ONLY[ChainId.ARBITRUM_NOVA],
+    ARBITRUM_NOVA.USDC,
+    ARBITRUM_NOVA.USDT,
+    ARBITRUM_NOVA.DAI,
+    ARBITRUM_NOVA.WBTC,
+  ],
+  [ChainId.BOBA_AVAX]: [...WRAPPED_NATIVE_ONLY[ChainId.BOBA_AVAX], BOBA_AVAX.AVAX],
 }
 
 export const PINNED_PAIRS: { readonly [chainId: number]: [Token, Token][] } = {

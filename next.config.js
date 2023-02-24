@@ -55,8 +55,73 @@ const nextConfig = {
   async redirects() {
     return [
       {
+        source: '/pools',
+        destination: '/',
+        permanent: true,
+      },
+      {
         source: '/',
         destination: '/swap',
+        permanent: true,
+      },
+      // {
+      //   source: '/swap/:path*',
+      //   destination: 'https://www.sushi.com/swap',
+      //   permanent: true,
+      // },
+      {
+        source: '/home',
+        destination: 'https://www.sushi.com/swap',
+        permanent: true,
+      },
+      // {
+      //   source: '/farm/:path*',
+      //   destination: 'https://www.sushi.com/earn',
+      //   permanent: true,
+      // },
+      {
+        source: '/farms/special',
+        destination: 'https://www.sushi.com/earn',
+        permanent: true,
+      },
+      {
+        source: '/onsen/:path*',
+        destination: 'https://www.sushi.com/earn',
+        permanent: true,
+      },
+      {
+        source: '/farms/:path*',
+        destination: 'https://www.sushi.com/earn',
+        permanent: true,
+      },
+      {
+        source: '/stake',
+        destination: 'https://www.sushi.com/earn',
+        permanent: true,
+      },
+      {
+        source: '/borrow',
+        destination: '/kashi',
+        permanent: true,
+      },
+      {
+        source: '/lend',
+        destination: '/kashi',
+        permanent: true,
+      },
+      {
+        source: '/inari',
+        destination: '/tools/inari',
+        permanent: true,
+      },
+      {
+        source: '/bento/balances',
+        destination: '/account',
+        permanent: true,
+      },
+      {
+        source: '/analytics/dashboard',
+        destination: '/analytics',
         permanent: true,
       },
       {
@@ -64,24 +129,10 @@ const nextConfig = {
         destination: '/analytics/pools/:path*',
         permanent: true,
       },
-      {
-        source: '/farms/special',
-        destination: '/farm',
-        permanent: true,
-      },
-      {
-        source: '/onsen',
-        destination: '/farm',
-        permanent: true,
-      },
     ]
   },
   async rewrites() {
     return [
-      {
-        source: '/stake',
-        destination: '/bar',
-      },
       {
         source: '/add/:token*',
         destination: '/legacy/add/:token*',
@@ -110,7 +161,6 @@ const nextConfig = {
         source: '/migrate',
         destination: '/legacy/migrate',
       },
-      // Kashi
       {
         source: '/me',
         destination: '/user',
@@ -145,7 +195,7 @@ const SentryWebpackPluginOptions = {
 
 // Make sure adding Sentry options is the last code to run before exporting, to
 // ensure that your source maps include changes from all other Webpack plugins
-module.exports = withSentryConfig(withBundleAnalyzer(nextConfig), SentryWebpackPluginOptions)
+module.exports = withBundleAnalyzer(nextConfig)
 
 // Don't delete this console log, useful to see the config in Vercel deployments
 // console.log('next.config.js', JSON.stringify(module.exports, null, 2))

@@ -1,6 +1,6 @@
 import { getAddress } from '@ethersproject/address'
 import { ChainId, Currency, NATIVE, SUSHI, Token } from '@sushiswap/core-sdk'
-import { XDAI_TOKENS } from 'app/config/tokens'
+import * as XDAI_TOKENS from 'app/config/tokens/xdai'
 import { Feature } from 'app/enums'
 import { Chef, PairType } from 'app/features/onsen/enum'
 import { usePositions } from 'app/features/onsen/hooks'
@@ -16,18 +16,18 @@ import {
   useGlimmerPrice,
   useGnoPrice,
   useKashiPairs,
-  useMagicPrice,
   useMasterChefV1SushiPerBlock,
   useMasterChefV1TotalAllocPoint,
   useMaticPrice,
+  useMetisPrice,
   useMovrPrice,
-  useOhmPrice,
+  useNativePrice,
   useOneDayBlock,
   useOnePrice,
-  useSpellPrice,
   useSushiPairs,
   useSushiPrice,
 } from 'app/services/graph'
+import { useGetAllTridentPools } from 'app/services/graph/hooks/pools'
 import { useCallback, useMemo } from 'react'
 
 import { useAllTokens } from './Tokens'
@@ -40,6 +40,20 @@ export default function useFarmRewards({ chainId = ChainId.ETHEREUM }) {
 
   const allTokens = useAllTokens()
   const { data: swapPairs } = useSushiPairs({
+    chainId,
+    variables: {
+      where: {
+        id_in: farmAddresses,
+      },
+    },
+    shouldFetch: !!farmAddresses,
+  })
+
+  const {
+    data: tridentPairs,
+    error,
+    isValidating,
+  } = useGetAllTridentPools({
     chainId,
     variables: {
       where: {
@@ -72,17 +86,16 @@ export default function useFarmRewards({ chainId = ChainId.ETHEREUM }) {
 
   const { data: sushiPrice } = useSushiPrice()
   const { data: ethPrice } = useEthPrice()
+  const { data: nativePrice } = useNativePrice({ chainId })
   const { data: maticPrice } = useMaticPrice()
   const { data: gnoPrice } = useGnoPrice()
   const { data: onePrice } = useOnePrice()
-  const { data: spellPrice } = useSpellPrice()
   const { data: celoPrice } = useCeloPrice()
   const { data: fantomPrice } = useFantomPrice()
   const { data: movrPrice } = useMovrPrice()
-  const { data: ohmPrice } = useOhmPrice()
   const { data: fusePrice } = useFusePrice()
-  const { data: magicPrice } = useMagicPrice()
   const { data: glimmerPrice } = useGlimmerPrice()
+  const { data: metisPrice } = useMetisPrice()
 
   const blocksPerDay = 86400 / Number(averageBlockTime)
 
@@ -100,10 +113,12 @@ export default function useFarmRewards({ chainId = ChainId.ETHEREUM }) {
       const swapPair1d = swapPairs1d?.find((pair) => pair.id === pool.pair)
       // @ts-ignore TYPE NEEDS FIXING
       const kashiPair = kashiPairs?.find((pair) => pair.id === pool.pair)
+      // @ts-ignore TYPE NEEDS FIXING
+      const tridentPair = tridentPairs?.find((pair) => pair.address === pool.pair)
 
-      const pair = swapPair || kashiPair
+      const pair = swapPair || tridentPair || kashiPair
 
-      const type = swapPair ? PairType.SWAP : PairType.KASHI
+      const type = swapPair ? PairType.SWAP : tridentPair ? PairType.TRIDENT : PairType.KASHI
 
       const blocksPerHour = 3600 / averageBlockTime
 
@@ -185,7 +200,12 @@ export default function useFarmRewards({ chainId = ChainId.ETHEREUM }) {
             }
             rewards[1] = reward
           }
-        } else if (pool.chef === Chef.MINICHEF && chainId !== ChainId.MATIC && chainId !== ChainId.ARBITRUM) {
+        } else if (
+          pool.chef === Chef.MINICHEF &&
+          chainId !== ChainId.MATIC &&
+          chainId !== ChainId.ARBITRUM &&
+          chainId !== ChainId.XDAI
+        ) {
           const sushiPerSecond =
             ((pool.allocPoint / pool.miniChef.totalAllocPoint) * pool.miniChef.sushiPerSecond) / 1e18
           const sushiPerBlock = sushiPerSecond * averageBlockTime
@@ -195,8 +215,6 @@ export default function useFarmRewards({ chainId = ChainId.ETHEREUM }) {
             ((pool.allocPoint / pool.miniChef.totalAllocPoint) * pool.rewarder.rewardPerSecond) / 1e18
 
           const rewardPerBlock = rewardPerSecond * averageBlockTime
-
-          const rewardPerDay = rewardPerBlock * blocksPerDay
 
           const reward = {
             [ChainId.MATIC]: {
@@ -247,6 +265,18 @@ export default function useFarmRewards({ chainId = ChainId.ETHEREUM }) {
               rewardPerDay: rewardPerSecond * 86400,
               rewardPrice: glimmerPrice,
             },
+            [ChainId.KAVA]: {
+              currency: NATIVE[ChainId.KAVA],
+              rewardPerBlock,
+              rewardPerDay: rewardPerSecond * 86400,
+              rewardPrice: 1, //todo: need handle this
+            },
+            [ChainId.METIS]: {
+              currency: NATIVE[ChainId.METIS],
+              rewardPerBlock,
+              rewardPerDay: rewardPerSecond * 86400,
+              rewardPrice: metisPrice,
+            },
           }
 
           if (chainId === ChainId.FUSE) {
@@ -265,15 +295,18 @@ export default function useFarmRewards({ chainId = ChainId.ETHEREUM }) {
               rewards[1] = reward[chainId]
             }
           }
-        } else if (chainId === ChainId.MATIC || chainId === ChainId.ARBITRUM) {
+        } else if (chainId === ChainId.MATIC || chainId === ChainId.ARBITRUM || chainId === ChainId.XDAI) {
           if (pool.rewarder.rewardPerSecond !== '0') {
             const rewardPerSecond =
               pool.rewarder.totalAllocPoint === '0'
                 ? pool.rewarder.rewardPerSecond / 10 ** pool.rewardToken.decimals
+                : chainId === ChainId.XDAI
+                ? ((pool.rewarder.native.allocPoint / pool.rewarder.totalAllocPoint) * pool.rewarder.rewardPerSecond) /
+                  1e18
                 : ((pool.allocPoint / pool.rewarder.totalAllocPoint) * pool.rewarder.rewardPerSecond) / 1e18
             const rewardPerBlock = rewardPerSecond * averageBlockTime
             const rewardPerDay = rewardPerBlock * blocksPerDay
-            const rewardPrice = pool.rewardToken.derivedETH * ethPrice
+            const rewardPrice = pool.rewardToken.derivedETH * nativePrice
 
             const address = getAddress(pool.rewardToken.id)
 
@@ -293,52 +326,19 @@ export default function useFarmRewards({ chainId = ChainId.ETHEREUM }) {
               rewardPrice,
             }
           }
-        } else if (pool.chef === Chef.OLD_FARMS) {
-          const sushiPerSecond =
-            ((pool.allocPoint / pool.miniChef.totalAllocPoint) * pool.miniChef.sushiPerSecond) / 1e18
-          const sushiPerBlock = sushiPerSecond * averageBlockTime
-          const sushiPerDay = sushiPerBlock * blocksPerDay
-
-          const rewardPerSecond =
-            ((pool.allocPoint / pool.miniChef.totalAllocPoint) * pool.rewarder.rewardPerSecond) / 1e18
-
-          const rewardPerBlock = rewardPerSecond * averageBlockTime
-
-          const rewardPerDay = rewardPerBlock * blocksPerDay
-
-          const reward = {
-            [ChainId.CELO]: {
-              currency: NATIVE[ChainId.CELO],
-              rewardPerBlock,
-              rewardPerDay: rewardPerSecond * 86400,
-              rewardPrice: celoPrice,
-            },
-          }
-
-          // @ts-ignore TYPE NEEDS FIXING
-          rewards[0] = {
-            ...defaultReward,
-            rewardPerBlock: sushiPerBlock,
-            rewardPerDay: sushiPerDay,
-          }
-
-          // @ts-ignore TYPE NEEDS FIXING
-          if (chainId in reward) {
-            // @ts-ignore TYPE NEEDS FIXING
-            rewards[1] = reward[chainId]
-          }
         }
-
         return rewards
       }
 
       const rewards = getRewards()
 
-      const balance = swapPair ? Number(pool.balance / 1e18) : pool.balance / 10 ** kashiPair.token0.decimals
+      const balance = kashiPair ? pool.balance / 10 ** kashiPair.token0.decimals : Number(pool.balance / 1e18)
 
-      const tvl = swapPair
+      const tvl = kashiPair
+        ? balance * kashiPair.token0.derivedETH * ethPrice
+        : swapPair
         ? (balance / Number(swapPair.totalSupply)) * Number(swapPair.reserveUSD)
-        : balance * kashiPair.token0.derivedETH * ethPrice
+        : (balance / (Number(tridentPair?.liquidity) / 1e18)) * Number(tridentPair?.liquidityUSD)
 
       const feeApyPerYear =
         swapPair && swapPair1d
@@ -366,6 +366,24 @@ export default function useFarmRewards({ chainId = ChainId.ETHEREUM }) {
 
       const position = positions.find((position) => position.id === pool.id && position.chef === pool.chef)
 
+      if (type === PairType.TRIDENT && pair.address) {
+        pair.id = pair.address
+        pair.token0 = {
+          id: pair?.token0?.address,
+          address: pair?.token0?.address,
+          name: pair?.token0?.name,
+          symbol: pair?.token0?.symbol,
+          decimals: pair?.token0?.decimals,
+        }
+        pair.token1 = {
+          id: pair?.token1?.address,
+          address: pair?.token1?.address,
+          name: pair?.token1?.name,
+          symbol: pair?.token1?.symbol,
+          decimals: pair?.token1?.decimals,
+        }
+      }
+
       return {
         ...pool,
         ...position,
@@ -390,6 +408,7 @@ export default function useFarmRewards({ chainId = ChainId.ETHEREUM }) {
         roiPerYear,
         rewards,
         tvl,
+        chainId,
       }
     },
     [
@@ -407,12 +426,15 @@ export default function useFarmRewards({ chainId = ChainId.ETHEREUM }) {
       masterChefV1SushiPerBlock,
       masterChefV1TotalAllocPoint,
       maticPrice,
+      metisPrice,
       movrPrice,
+      nativePrice,
       onePrice,
       positions,
       sushiPrice,
       swapPairs,
       swapPairs1d,
+      tridentPairs,
     ]
   )
 
@@ -422,10 +444,12 @@ export default function useFarmRewards({ chainId = ChainId.ETHEREUM }) {
         // @ts-ignore TYPE NEEDS FIXING
         (swapPairs && swapPairs.find((pair) => pair.id === farm.pair)) ||
         // @ts-ignore TYPE NEEDS FIXING
-        (kashiPairs && kashiPairs.find((pair) => pair.id === farm.pair))
+        (kashiPairs && kashiPairs.find((pair) => pair.id === farm.pair)) ||
+        // @ts-ignore TYPE NEEDS FIXING
+        (tridentPairs && tridentPairs.find((pair) => pair.address === farm.pair))
       )
     },
-    [kashiPairs, swapPairs]
+    [kashiPairs, swapPairs, tridentPairs]
   )
 
   return useMemo(() => farms.filter(filter).map(map), [farms, filter, map])

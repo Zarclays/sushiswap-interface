@@ -3,6 +3,7 @@ import { getAddress } from '@ethersproject/address'
 import { BigNumber } from '@ethersproject/bignumber'
 import { AddressZero } from '@ethersproject/constants'
 import { ChainId, JSBI, KASHI_ADDRESS, Token, ZERO } from '@sushiswap/core-sdk'
+import { NETWORK_LABEL } from 'app/config/networks'
 import { CHAINLINK_PRICE_FEED_MAP, ChainlinkPriceFeedEntry } from 'app/config/oracles/chainlink'
 import { Feature } from 'app/enums'
 import { featureEnabled, getOracle, validateChainlinkOracleData } from 'app/functions'
@@ -17,7 +18,13 @@ import { useMemo } from 'react'
 
 import KashiMediumRiskLendingPair from './KashiMediumRiskLendingPair'
 
-const BLACKLISTED_TOKENS = ['0xC6d54D2f624bc83815b49d9c2203b1330B841cA0', '0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F']
+const BLACKLISTED_TOKENS = [
+  '0xC6d54D2f624bc83815b49d9c2203b1330B841cA0',
+  '0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F',
+  '0x8Ab7404063Ec4DBcfd4598215992DC3F8EC853d7',
+  '0x4fE83213D56308330EC302a8BD641f1d0113A4Cc',
+  '0xADE00C28244d5CE17D72E40330B1c318cD12B7c3',
+]
 
 const BLACKLISTED_ORACLES = [
   '0x8f2CC3376078568a04eBC600ae5F0a036DBfd812',
@@ -160,6 +167,21 @@ export function useKashiMediumRiskLendingPairs(
   const { result, valid, loading, syncing, error } = useSingleCallResult(boringHelperContract, 'pollKashiPairs', args, {
     gasRequired: 20_000_000,
   })
+
+  if (error) {
+    // random addy I pulled from etherscan
+    console.log(
+      boringHelperContract?.interface.encodeFunctionData('pollKashiPairs', [
+        '0xfcf383459e08ccb1679f32ae7f22eb0afe974a4c',
+        addresses,
+      ])
+    )
+    console.log(
+      `BoringHelper failed: network: ${chainId ? NETWORK_LABEL[chainId] : 'undef'}, boringhelper: ${
+        boringHelperContract?.address
+      }, calldata in console`
+    )
+  }
 
   const { rebases } = useBentoRebases(useMemo(() => Object.values(tokens), [tokens]))
   const prices = useUSDCPricesSubgraph(Object.values(tokens))

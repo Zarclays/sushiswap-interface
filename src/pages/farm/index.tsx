@@ -1,8 +1,6 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { ChainId } from '@sushiswap/core-sdk'
 import Button from 'app/components/Button'
-import ExternalLink from 'app/components/ExternalLink'
 import Search from 'app/components/Search'
 import Typography from 'app/components/Typography'
 import { Chef, PairType } from 'app/features/onsen/enum'
@@ -36,7 +34,7 @@ export default function Farm(): JSX.Element {
 
   const FILTER = {
     // @ts-ignore TYPE NEEDS FIXING
-    all: (farm) => farm.allocPoint !== '0' && farm.chef !== Chef.OLD_FARMS,
+    all: (farm) => farm.allocPoint !== '0' || (farm.rewards.length > 1 ? farm.rewarder.rewardPerSecond > 0 : false),
     // @ts-ignore TYPE NEEDS FIXING
     portfolio: (farm) => farm?.amount && !farm.amount.isZero(),
     // @ts-ignore TYPE NEEDS FIXING
@@ -49,7 +47,9 @@ export default function Farm(): JSX.Element {
       farm.rewards.length > 1 &&
       farm.allocPoint !== '0',
     // @ts-ignore TYPE NEEDS FIXING
-    old: (farm) => farm.chef === Chef.OLD_FARMS,
+    old: (farm) => farm.allocPoint === '0',
+    // @ts-ignore TYPE NEEDS FIXING
+    trident: (farm) => farm.pair.type === PairType.TRIDENT && farm.allocPoint !== '0',
   }
 
   const rewards = useFarmRewards({ chainId })
@@ -83,11 +83,7 @@ export default function Farm(): JSX.Element {
         </div>
         <div className="flex gap-3">
           <Button id="btn-create-new-pool" size="sm">
-            <a
-              href="https://docs.google.com/document/d/1VcdrqAn1sR8Wa0BSSU-jAl68CfoECR62LCzIyzUpZ_U"
-              target="_blank"
-              rel="noreferrer"
-            >
+            <a href="https://rbieu62gj0f.typeform.com/to/KkrPkOFe" target="_blank" rel="noreferrer">
               {i18n._(t`Apply for Onsen`)}
             </a>
           </Button>
@@ -100,18 +96,6 @@ export default function Farm(): JSX.Element {
             <OnsenFilter account={account} chainId={chainId} />
           </div>
           <FarmList farms={result} term={term} />
-          {chainId && chainId === ChainId.CELO && (
-            <Typography variant="xs" weight={700} className="italic text-center text-secondary">
-              {i18n._(t`Users can now bridge back to Celo using a new version of Optics.`)}{' '}
-              <ExternalLink
-                color="blue"
-                id={`celo-optics-info-link`}
-                href="https://medium.com/@0xJiro/celo-farms-update-migrating-to-the-optics-v2-bridge-e8075d1c9ea"
-              >
-                {i18n._(t`Click for more info on Optics V1 Migration.`)}
-              </ExternalLink>
-            </Typography>
-          )}
         </div>
       </TridentBody>
     </>

@@ -21,6 +21,11 @@ const Palm = 'https://raw.githubusercontent.com/sushiswap/icons/master/network/p
 const Moonriver = 'https://raw.githubusercontent.com/sushiswap/icons/master/network/moonriver.jpg'
 const Fuse = 'https://raw.githubusercontent.com/sushiswap/icons/master/network/fuse.jpg'
 const Telos = 'https://raw.githubusercontent.com/sushiswap/icons/master/network/telos.jpg'
+const Optimism = 'https://raw.githubusercontent.com/sushiswap/list/master/logos/network-logos/optimism.jpg'
+const Kava = 'https://raw.githubusercontent.com/sushiswap/icons/master/network/kava.svg'
+const Metis = 'https://raw.githubusercontent.com/sushiswap/icons/master/network/metis.svg'
+const ArbitrumNova = 'https://raw.githubusercontent.com/sushiswap/icons/master/network/arbitrum-nova.svg'
+const BobaAvax = 'https://raw.githubusercontent.com/sushiswap/list/master/logos/network-logos/boba-avax.jpg'
 
 export const NETWORK_ICON: Record<number, string> = {
   [ChainId.ETHEREUM]: Mainnet,
@@ -52,6 +57,11 @@ export const NETWORK_ICON: Record<number, string> = {
   [ChainId.FUSE]: Fuse,
   [ChainId.TELOS]: Telos,
   [ChainId.MOONBEAM]: Moonbeam,
+  [ChainId.OPTIMISM]: Optimism,
+  [ChainId.KAVA]: Kava,
+  [ChainId.METIS]: Metis,
+  [ChainId.ARBITRUM_NOVA]: ArbitrumNova,
+  [ChainId.BOBA_AVAX]: BobaAvax,
 }
 
 export const NETWORK_LABEL: Record<number, string> = {
@@ -84,4 +94,9 @@ export const NETWORK_LABEL: Record<number, string> = {
   [ChainId.FUSE]: 'Fuse',
   [ChainId.TELOS]: 'Telos EVM',
   [ChainId.MOONBEAM]: 'Moonbeam',
+  [ChainId.OPTIMISM]: 'Optimism',
+  [ChainId.KAVA]: 'Kava',
+  [ChainId.METIS]: 'Metis',
+  [ChainId.ARBITRUM_NOVA]: 'Arbitrum Nova',
+  [ChainId.BOBA_AVAX]: 'Boba Avax',
 }

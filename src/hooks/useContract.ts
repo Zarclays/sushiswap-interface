@@ -24,7 +24,6 @@ import MISO from '@sushiswap/miso/exports/all.json'
 import ConstantProductPoolArtifact from '@sushiswap/trident/artifacts/contracts/pool/constant-product/ConstantProductPool.sol/ConstantProductPool.json'
 import TRIDENT from '@sushiswap/trident/exports/all.json'
 import { Pool, PoolType } from '@sushiswap/trident-sdk'
-import { OLD_FARMS } from 'app/config/farms'
 import {
   ARGENT_WALLET_DETECTOR_ABI,
   ARGENT_WALLET_DETECTOR_MAINNET_ADDRESS,
@@ -63,6 +62,7 @@ import UNI_FACTORY_ABI from 'app/constants/abis/uniswap-v2-factory.json'
 import IUniswapV2PairABI from 'app/constants/abis/uniswap-v2-pair.json'
 import WETH9_ABI from 'app/constants/abis/weth.json'
 import ZENKO_ABI from 'app/constants/abis/zenko.json'
+import LPToken from 'app/features/migration/LPToken'
 import { poolEntityMapper } from 'app/features/trident/poolEntityMapper'
 import { getContract } from 'app/functions'
 import { useActiveWeb3React } from 'app/services/web3'
@@ -173,7 +173,8 @@ const MULTICALL_ADDRESS = {
   [ChainId.GÖRLI]: '0x1F98415757620B543A52E61c46B32eB19261F984',
   [ChainId.KOVAN]: '0x1F98415757620B543A52E61c46B32eB19261F984',
   [ChainId.MATIC]: '0x1F98415757620B543A52E61c46B32eB19261F984',
-  // [ChainId.OPTIMISM]: '0x1F98415757620B543A52E61c46B32eB19261F984',
+  [ChainId.MATIC_TESTNET]: '0xdDCbf776dF3dE60163066A5ddDF2277cB445E0F3',
+  [ChainId.OPTIMISM]: '0x1F98415757620B543A52E61c46B32eB19261F984',
   [ChainId.ARBITRUM]: '0xadF885960B47eA2CD9B55E6DAc6B42b7Cb2806dB',
   [ChainId.MOONBEAM]: '0x34c471ddceb20018bbb73f6d13709936fc870acc',
   [ChainId.AVALANCHE]: '0x8C0F842791F03C095b6c633759224FcC9ACe68ea',
@@ -188,6 +189,10 @@ const MULTICALL_ADDRESS = {
   [ChainId.OKEX]: '0x8C8BF5Dea280A1eC68219D66E8A21E60585830F5',
   [ChainId.HECO]: '0x64e1E895866B3126f8f2E2912B475FDB35b2F315',
   [ChainId.PALM]: '0x4d4A0D45a98AE8EC25b359D93A088A87BC9eF70b',
+  [ChainId.KAVA]: '0x67dA5f2FfaDDfF067AB9d5F025F8810634d84287',
+  [ChainId.METIS]: '0x67dA5f2FfaDDfF067AB9d5F025F8810634d84287',
+  [ChainId.ARBITRUM_NOVA]: '0x0769fd68dFb93167989C6f7254cd0D766Fb2841F',
+  [ChainId.BOBA_AVAX]: '0x67dA5f2FfaDDfF067AB9d5F025F8810634d84287',
 }
 
 export function useInterfaceMulticall(): Contract | null | undefined {
@@ -342,27 +347,52 @@ export function useMisoHelperContract(withSignerIfPossible = true): Contract | n
   return useContract(factory?.address, MISO_HELPER_ABI, withSignerIfPossible)
 }
 
-export function useSushiRollContract(version: 'v1' | 'v2' = 'v2'): Contract | null {
+export function useSushiRollContract(dex: LPToken['dex']): Contract | null {
   const { chainId } = useActiveWeb3React()
   let address: string | undefined
   if (chainId) {
     switch (chainId) {
       case ChainId.ETHEREUM:
-        address = '0x16E58463eb9792Bc236d8860F5BC69A81E26E32B'
+        if (dex === 'uniswap_v2') {
+          address = '0x16E58463eb9792Bc236d8860F5BC69A81E26E32B'
+        }
+
         break
       case ChainId.ROPSTEN:
         address = '0xCaAbdD9Cf4b61813D4a52f980d6BC1B713FE66F5'
         break
       case ChainId.BSC:
-        if (version === 'v1') {
-          address = '0x677978dE066b3f5414eeA56644d9fCa3c75482a1'
-        } else if (version === 'v2') {
+        if (dex === 'pancakeswap_v2') {
           address = '0x2DD1aB1956BeD7C2d938d0d7378C22Fd01135a5e'
         }
         break
       case ChainId.MATIC:
-        address = '0x0053957E18A0994D3526Cf879A4cA7Be88e8936A'
+        if (dex === 'quickswap') {
+          address = '0x0053957E18A0994D3526Cf879A4cA7Be88e8936A'
+        }
         break
+      case ChainId.FANTOM:
+        if (dex === 'spiritswap') {
+          address = '0x2D2ed6871f473Fb9f8958F67C2302360A79fd071'
+        } else if (dex === 'spookyswap') {
+          address = '0xFB232C6D1E3ad48fEdF8A29c7dEf7A33ce43E56a'
+        }
+        break
+      case ChainId.AVALANCHE:
+        if (dex === 'traderjoe') {
+          address = '0x22a2fBd8bd1123bC3307554AD00bBFF4EDAbB1d5'
+        } else if (dex === 'pangolin') {
+          address = '0x34F1cC395BeE698d070f33C1c0f8EC4C1022bcFc'
+        }
+
+      case ChainId.MOONBEAM:
+        if (dex === 'stellaswap') {
+          address = '0xdDCbf776dF3dE60163066A5ddDF2277cB445E0F3'
+        } else if (dex === 'beamswap') {
+          address = '0x67dA5f2FfaDDfF067AB9d5F025F8810634d84287'
+        }
+      // Spookyswap
+      // 0xFB232C6D1E3ad48fEdF8A29c7dEf7A33ce43E56a
     }
   }
   return useContract(address, SUSHIROLL_ABI, true)
@@ -389,9 +419,4 @@ export function useDashboardContract(): Contract | null {
 
 export function useQuickSwapFactoryContract(): Contract | null {
   return useContract('0x5757371414417b8C6CAad45bAeF941aBc7d3Ab32', FACTORY_ABI, false)
-}
-
-export function useOldFarmsContract(withSignerIfPossibe?: boolean): Contract | null {
-  const { chainId } = useActiveWeb3React()
-  return useContract(chainId ? OLD_FARMS[chainId] : undefined, MINICHEF_ABI, withSignerIfPossibe)
 }

@@ -21,6 +21,7 @@ const Desktop: FC = () => {
   const { account, chainId, library } = useActiveWeb3React()
   const userEthBalance = useNativeCurrencyBalances(account ? [account] : [])?.[account ?? '']
   const isCoinbaseWallet = useIsCoinbaseWallet()
+  const [showBanner, setShowBanner] = React.useState<boolean>(true)
 
   return (
     <>
@@ -75,8 +76,19 @@ const Desktop: FC = () => {
             </div>
           </Container>
         </nav>
+        <div className="relative bg-indigo-600">
+          <div className="px-3 py-3 mx-auto max-w-7xl sm:px-6 lg:px-8">
+            <div className="pr-16 sm:px-16 sm:text-center">
+              <p className="font-medium text-white">
+                <span className="hidden md:inline">
+                  Kashi 1.0 is being deprecated. Deposits and Borrows are disabled in the UI.
+                </span>
+              </p>
+            </div>
+          </div>
+        </div>
       </header>
-      <div style={{ height: HEADER_HEIGHT, minHeight: HEADER_HEIGHT }} />
+      <div style={{ height: HEADER_HEIGHT + 48, minHeight: HEADER_HEIGHT }} />
     </>
   )
 }

@@ -21,18 +21,18 @@ import { pager } from './pager'
 export const EXCHANGE = {
   [ChainId.ETHEREUM]: 'sushiswap/exchange',
   [ChainId.XDAI]: 'sushiswap/xdai-exchange',
-  [ChainId.MATIC]: 'sushiswap/matic-exchange',
-  [ChainId.FANTOM]: 'sushiswap/fantom-exchange',
+  [ChainId.MATIC]: 'sushiswap/exchange-polygon',
+  [ChainId.FANTOM]: 'sushiswap/exchange-fantom',
   [ChainId.BSC]: 'sushiswap/bsc-exchange',
   [ChainId.HARMONY]: 'sushiswap/harmony-exchange',
-  [ChainId.AVALANCHE]: 'sushiswap/avalanche-exchange',
-  [ChainId.CELO]: 'jiro-ono/sushitestsubgraph',
-  [ChainId.ARBITRUM]: 'sushiswap/arbitrum-exchange',
-  [ChainId.MOONRIVER]: 'sushiswap/moonriver-exchange',
+  [ChainId.AVALANCHE]: 'sushiswap/exchange-avalanche',
+  [ChainId.CELO]: 'sushiswap/exchange-celo',
+  [ChainId.ARBITRUM]: 'sushiswap/exchange-arbitrum-backup',
+  [ChainId.MOONRIVER]: 'sushiswap/exchange-moonriver',
   [ChainId.OKEX]: 'okex-exchange/oec',
   [ChainId.HECO]: 'heco-exchange/heco',
-  [ChainId.FUSE]: 'sushiswap/fuse-exchange',
-  [ChainId.MOONBEAM]: 'sushiswap/moonbeam-exchange',
+  [ChainId.FUSE]: 'sushiswap/exchange-fuse',
+  [ChainId.MOONBEAM]: 'sushiswap/exchange-moonbeam',
 }
 
 // @ts-ignore TYPE NEEDS FIXING
@@ -40,7 +40,7 @@ export const exchange = async (chainId = ChainId.ETHEREUM, query, variables = {}
   // @ts-ignore TYPE NEEDS FIXING
   pager(`${GRAPH_HOST[chainId]}/subgraphs/name/${EXCHANGE[chainId]}`, query, variables)
 
-export const getPairs = async (chainId = ChainId.ETHEREUM, variables = undefined, query = pairsQuery) => {
+export const getPairs = async (chainId = ChainId.ETHEREUM, variables: any = undefined, query = pairsQuery) => {
   const { pairs } = await exchange(chainId, query, variables)
   return pairs
 }
@@ -60,7 +60,7 @@ export const getTokenSubset = async (chainId = ChainId.ETHEREUM, variables) => {
 }
 
 // @ts-ignore TYPE NEEDS FIXING
-export const getTokens = async (chainId = ChainId.ETHEREUM, variables) => {
+export const getTokens = async (chainId = ChainId.ETHEREUM, variables: any = undefined) => {
   // console.log('getTokens')
   const { tokens } = await exchange(chainId, tokensQuery, variables)
   return tokens
@@ -97,7 +97,7 @@ export const getTokenPrice = async (chainId = ChainId.ETHEREUM, query, variables
   return token?.derivedETH * nativePrice
 }
 
-export const getNativePrice = async (chainId = ChainId.ETHEREUM, variables = undefined) => {
+export const getNativePrice = async (chainId = ChainId.ETHEREUM, variables: any = undefined) => {
   // console.log('getEthPrice')
   const data = await getBundle(chainId, undefined, variables)
   return data?.bundles[0]?.ethPrice
@@ -110,6 +110,13 @@ export const getEthPrice = async (variables = undefined) => {
 export const getGlimmerPrice = async (variables = {}) => {
   return getTokenPrice(ChainId.MOONBEAM, tokenPriceQuery, {
     id: '0xacc15dc74880c9944775448304b263d191c6077f',
+    ...variables,
+  })
+}
+
+export const getMetisPrice = async (variables = {}) => {
+  return getTokenPrice(ChainId.ETHEREUM, tokenPriceQuery, {
+    id: '0x9e32b13ce7f2e80a01932b42553652e053d6ed8e',
     ...variables,
   })
 }
@@ -264,7 +271,7 @@ export const getDayData = async (chainId = ChainId.ETHEREUM, variables = undefin
   return dayDatas
 }
 
-export const getFactory = async (chainId = ChainId.ETHEREUM, variables = undefined) => {
+export const getFactory = async (chainId = ChainId.ETHEREUM, variables: any = undefined) => {
   const { factories } = await exchange(chainId, factoryQuery, variables)
   return factories[0]
 }

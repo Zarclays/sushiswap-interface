@@ -3,7 +3,6 @@ import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import Button from 'app/components/Button'
 import { Feature } from 'app/enums'
-import { TridentTransactions } from 'app/features/transactions/Transactions'
 import ClassicLinkButtons from 'app/features/trident/pool/ClassicLinkButtons'
 import ClassicMarket from 'app/features/trident/pool/ClassicMarket'
 import ClassicMyPosition from 'app/features/trident/pool/ClassicMyPosition'
@@ -82,7 +81,7 @@ const Pool = () => {
             </div>
           </div>
         </div>
-        <TridentTransactions poolAddress={poolWithState?.pool?.liquidityToken.address} />
+        {/* <TridentTransactions poolAddress={poolWithState?.pool?.liquidityToken.address} /> */}
       </TridentBody>
     </>
   )

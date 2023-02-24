@@ -1,5 +1,6 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
+import Dots from 'app/components/Dots'
 import Search from 'app/components/Search'
 import SortIcon from 'app/components/SortIcon'
 import Typography from 'app/components/Typography'
@@ -9,13 +10,15 @@ import { classNames } from 'app/functions'
 import { useFuse, useSortableData } from 'app/hooks'
 import { useInfiniteScroll } from 'app/hooks/useInfiniteScroll'
 import { useActiveWeb3React } from 'app/services/web3'
-import React, { FC, memo, ReactNode } from 'react'
+import React, { FC, memo, ReactNode, useMemo } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component'
 
 import { useKashiMediumRiskLendingPairs, useKashiPairAddresses } from './hooks'
 import { KashiMediumRiskLendingPair } from './KashiMediumRiskLendingPair'
 
 interface KashiMarketList {}
+
+const BLACKLISTED_MARKETS = ['0xF2028069Cd88F75FCBCfE215c70fe6d77CB80B10']
 
 const KashiMarketList: FC<KashiMarketList> = () => {
   const { account } = useActiveWeb3React()
@@ -24,7 +27,7 @@ const KashiMarketList: FC<KashiMarketList> = () => {
 
   const { i18n } = useLingui()
   const { result, term, search } = useFuse<KashiMediumRiskLendingPair>({
-    data: markets,
+    data: useMemo(() => markets.filter((market) => !BLACKLISTED_MARKETS.includes(market.address)), [markets]),
     options: {
       keys: ['asset.token.symbol', 'collateral.token.symbol'],
       threshold: 0.2,
@@ -141,12 +144,18 @@ const KashiMarketList: FC<KashiMarketList> = () => {
             hasMore={numDisplayed <= items.length}
             loader={null}
           >
-            <>
-              {items.slice(0, numDisplayed).reduce<ReactNode[]>((acc, market, index) => {
-                if (market) acc.push(<KashiMarketListItem market={market} key={index} i18n={i18n} />)
-                return acc
-              }, [])}
-            </>
+            {items.length > 0 ? (
+              <>
+                {items.slice(0, numDisplayed).reduce<ReactNode[]>((acc, market, index) => {
+                  if (market) acc.push(<KashiMarketListItem market={market} key={index} i18n={i18n} />)
+                  return acc
+                }, [])}
+              </>
+            ) : (
+              <div className="flex p-2 sm:justify-center">
+                <Dots>Loading</Dots>
+              </div>
+            )}
           </InfiniteScroll>
         </div>
       </div>
