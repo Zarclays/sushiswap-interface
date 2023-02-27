@@ -1,15 +1,15 @@
 const SEO = {
-  defaultTitle: 'Sushi',
-  titleTemplate: '%s | Sushi',
+  defaultTitle: 'ZSwap',
+  titleTemplate: '%s | ZSwap',
   description: 'Swap, yield, lend, borrow, leverage, limit, launch all on one community driven ecosystem',
   openGraph: {
     type: 'website',
-    url: 'https://app.sushi.com/',
-    site_name: 'Sushi',
+    url: 'https://app.zswap.com/',
+    site_name: 'ZSwap',
   },
   twitter: {
-    handle: '@SushiSwap',
-    site: '@SushiSwap',
+    handle: '@ZSwap',
+    site: '@ZSwap',
     cardType: 'summary_large_image',
   },
 }
