@@ -1,6 +1,6 @@
 import { defaultAbiCoder } from '@ethersproject/abi'
-import { CHAIN_KEY } from '@sushiswap/core-sdk'
-import MISO from '@sushiswap/miso/exports/all.json'
+import { CHAIN_KEY } from '@zarclays/zswap-core-sdk'
+import MISO from '@zarclays/zswap-miso/exports/all.json'
 import { useContract } from 'app/hooks'
 import { useActiveWeb3React } from 'app/services/web3'
 import { useTransactionAdder } from 'app/state/transactions/hooks'

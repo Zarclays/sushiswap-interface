@@ -1,4 +1,4 @@
-import { ConstantProductPool, HybridPool, PoolType } from '@sushiswap/trident-sdk'
+import { ConstantProductPool, HybridPool, PoolType } from '@zarclays/zswap-trident-sdk'
 import { ChipColor } from 'app/components/Chip'
 import { ConstantProductPoolState } from 'app/hooks/useTridentClassicPools'
 import { StablePoolState } from 'app/hooks/useTridentStablePools'

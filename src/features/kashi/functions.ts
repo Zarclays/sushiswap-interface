@@ -1,5 +1,5 @@
-import { JSBI, ZERO } from '@sushiswap/core-sdk'
-import { PROTOCOL_FEE, PROTOCOL_FEE_DIVISOR } from '@sushiswap/kashi-sdk'
+import { JSBI, ZERO } from '@zarclays/zswap-core-sdk'
+import { PROTOCOL_FEE, PROTOCOL_FEE_DIVISOR } from '@zarclays/zswap-kashi-sdk'
 
 import { KashiMediumRiskLendingPair } from './KashiMediumRiskLendingPair'
 

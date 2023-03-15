@@ -1,5 +1,5 @@
-import { Price, Token } from '@sushiswap/core-sdk'
-import { ILimitOrderData, LimitOrder, OrderStatus } from '@sushiswap/limit-order-sdk'
+import { Price, Token } from '@zarclays/zswap-core-sdk'
+import { ILimitOrderData, LimitOrder, OrderStatus } from '@zarclays/zswap-limit-order-sdk'
 
 export interface LimitOrdersResponse {
   pendingOrders: PendingOrders

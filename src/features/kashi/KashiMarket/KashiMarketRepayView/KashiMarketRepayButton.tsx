@@ -10,8 +10,8 @@ import {
   TradeType,
   WNATIVE_ADDRESS,
   ZERO,
-} from '@sushiswap/core-sdk'
-import { Trade as LegacyTrade } from '@sushiswap/core-sdk/dist/entities/Trade'
+} from '@zarclays/zswap-core-sdk'
+import { Trade as LegacyTrade } from '@zarclays/zswap-core-sdk/dist/entities/Trade'
 import Button from 'app/components/Button'
 import Typography from 'app/components/Typography'
 import { Warning, Warnings } from 'app/entities/Warnings'

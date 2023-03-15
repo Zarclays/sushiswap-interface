@@ -1,6 +1,6 @@
 import { t } from '@lingui/macro'
-import { CHAIN_KEY, ChainId, NATIVE, Token } from '@sushiswap/core-sdk'
-import MISO from '@sushiswap/miso/exports/all.json'
+import { CHAIN_KEY, ChainId, NATIVE, Token } from '@zarclays/zswap-core-sdk'
+import MISO from '@zarclays/zswap-miso/exports/all.json'
 import { NATIVE_PAYMENT_TOKEN } from 'app/features/miso/context/constants'
 import {
   AuctionPaymentCurrencyInfo,

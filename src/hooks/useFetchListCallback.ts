@@ -1,6 +1,6 @@
 import { nanoid } from '@reduxjs/toolkit'
-import { ChainId } from '@sushiswap/core-sdk'
 import { TokenList } from '@uniswap/token-lists'
+import { ChainId } from '@zarclays/zswap-core-sdk'
 import { resolveENSContentHash } from 'app/functions/ens'
 import { getNetworkLibrary } from 'app/functions/getNetworkLibrary'
 import { getTokenList } from 'app/functions/list'

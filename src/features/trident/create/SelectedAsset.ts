@@ -1,4 +1,4 @@
-import { Currency, CurrencyAmount } from '@sushiswap/core-sdk'
+import { Currency, CurrencyAmount } from '@zarclays/zswap-core-sdk'
 import { tryParseAmount } from 'app/functions'
 import { v4 } from 'uuid'
 

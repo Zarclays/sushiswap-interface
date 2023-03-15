@@ -1,5 +1,5 @@
-import { Currency, Token } from '@sushiswap/core-sdk'
 import { TokenList } from '@uniswap/token-lists'
+import { Currency, Token } from '@zarclays/zswap-core-sdk'
 import { HeadlessUiModal } from 'app/components/Modal'
 import usePrevious from 'app/hooks/usePrevious'
 import React, { createContext, FC, ReactNode, useCallback, useContext, useMemo, useState } from 'react'

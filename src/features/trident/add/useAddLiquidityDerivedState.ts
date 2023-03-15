@@ -1,7 +1,7 @@
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { Currency, CurrencyAmount, ZERO } from '@sushiswap/core-sdk'
-import { PoolState } from '@sushiswap/trident-sdk'
+import { Currency, CurrencyAmount, ZERO } from '@zarclays/zswap-core-sdk'
+import { PoolState } from '@zarclays/zswap-trident-sdk'
 import {
   selectAddNormalInput,
   selectAddSpendFromWallet,

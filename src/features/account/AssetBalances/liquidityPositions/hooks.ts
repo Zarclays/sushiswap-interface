@@ -1,5 +1,5 @@
-import { Token } from '@sushiswap/core-sdk'
-import { PoolType } from '@sushiswap/trident-sdk'
+import { Token } from '@zarclays/zswap-core-sdk'
+import { PoolType } from '@zarclays/zswap-trident-sdk'
 import { getApy } from 'app/functions'
 import {
   TridentPositionRow,

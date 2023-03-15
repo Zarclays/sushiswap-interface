@@ -1,5 +1,5 @@
 import { AddressZero } from '@ethersproject/constants'
-import { ChainId, Currency, CurrencyAmount, Token } from '@sushiswap/core-sdk'
+import { ChainId, Currency, CurrencyAmount, Token } from '@zarclays/zswap-core-sdk'
 import approveAmountCalldata, { toHex } from 'app/functions/approveAmountCalldata'
 
 describe('approveAmountCalldata functions', () => {

@@ -1,6 +1,6 @@
 import { getAddress } from '@ethersproject/address'
-import { ChainId, Token } from '@sushiswap/core-sdk'
-import { PoolType } from '@sushiswap/trident-sdk'
+import { ChainId, Token } from '@zarclays/zswap-core-sdk'
+import { PoolType } from '@zarclays/zswap-trident-sdk'
 import { fetcher, TridentPoolData } from 'app/services/graph'
 import { getTridentPositionsQuery } from 'app/services/graph/queries'
 

@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { Fee } from '@sushiswap/trident-sdk'
+import { Fee } from '@zarclays/zswap-trident-sdk'
 import { AppState } from 'app/state'
 
 export enum PoolSortOption {

@@ -1,5 +1,5 @@
-import { CHAIN_KEY } from '@sushiswap/core-sdk'
-import MISO from '@sushiswap/miso/exports/all.json'
+import { CHAIN_KEY } from '@zarclays/zswap-core-sdk'
+import MISO from '@zarclays/zswap-miso/exports/all.json'
 import { DocumentInput } from 'app/features/miso/context/hooks/useAuctionDocuments'
 import { MisoAbiByTemplateId } from 'app/features/miso/context/utils'
 import { useContract } from 'app/hooks'

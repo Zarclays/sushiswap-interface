@@ -1,5 +1,5 @@
-import { Currency, Token } from '@sushiswap/core-sdk'
 import { Tags, TokenInfo, TokenList } from '@uniswap/token-lists'
+import { Currency, Token } from '@zarclays/zswap-core-sdk'
 import { isAddress } from 'functions/validate'
 
 type TagDetails = Tags[keyof Tags]

@@ -1,4 +1,4 @@
-import { CurrencyAmount, Token } from '@sushiswap/core-sdk'
+import { CurrencyAmount, Token } from '@zarclays/zswap-core-sdk'
 import { useTransactionAdder } from 'app/state/transactions/hooks'
 import { useCallback } from 'react'
 

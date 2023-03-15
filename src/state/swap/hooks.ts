@@ -9,7 +9,7 @@ import {
   Trade as V2Trade,
   TradeType,
   WNATIVE_ADDRESS,
-} from '@sushiswap/core-sdk'
+} from '@zarclays/zswap-core-sdk'
 import { currencyId } from 'app/functions'
 import { tryParseAmount } from 'app/functions/parse'
 import { isAddress } from 'app/functions/validate'

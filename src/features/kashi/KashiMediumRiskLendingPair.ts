@@ -1,4 +1,4 @@
-import { toAmount, toShare } from '@sushiswap/bentobox-sdk'
+import { toAmount, toShare } from '@zarclays/zswap-bentobox-sdk'
 import {
   Currency,
   CurrencyAmount,
@@ -10,8 +10,8 @@ import {
   toElastic,
   Token,
   ZERO,
-} from '@sushiswap/core-sdk'
-import { accrue, AccrueInfo, computePairAddress, interestAccrue, takeFee } from '@sushiswap/kashi-sdk'
+} from '@zarclays/zswap-core-sdk'
+import { accrue, AccrueInfo, computePairAddress, interestAccrue, takeFee } from '@zarclays/zswap-kashi-sdk'
 
 import { accrueTotalAssetWithFee } from './functions'
 import { Oracle } from './oracles'

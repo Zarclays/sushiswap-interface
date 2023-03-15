@@ -1,5 +1,5 @@
 // a list of tokens by chain
-import { ChainId, SUSHI, Token, WNATIVE } from '@sushiswap/core-sdk'
+import { ChainId, SUSHI, Token, WNATIVE } from '@zarclays/zswap-core-sdk'
 
 import * as ARBITRUM from './tokens/arbitrum'
 import * as ARBITRUM_NOVA from './tokens/arbitrum-nova'
