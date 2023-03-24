@@ -2,7 +2,7 @@ import { BigNumber } from '@ethersproject/bignumber'
 import { I18n } from '@lingui/core'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { ChainId, SUSHI, SUSHI_ADDRESS, Token } from '@zarclays/zswap-core-sdk'
+import { ChainId, SUSHI, Token, ZSWAPTOKEN_ADDRESS } from '@zarclays/zswap-core-sdk'
 import { CRXSUSHI } from 'app/config/tokens/ethereum'
 import { e10 } from 'app/functions/math'
 import { useZenkoContract } from 'app/hooks/useContract'
@@ -29,9 +29,9 @@ export const GENERAL = (i18n: I18n): StrategyGeneralInfo => ({
 export const tokenDefinitions: StrategyTokenDefinitions = {
   inputToken: {
     chainId: ChainId.ETHEREUM,
-    address: SUSHI_ADDRESS[ChainId.ETHEREUM],
+    address: ZSWAPTOKEN_ADDRESS[ChainId.ETHEREUM],
     decimals: 18,
-    symbol: 'SUSHI',
+    symbol: 'ZSwap',
   },
   outputToken: {
     chainId: ChainId.ETHEREUM,
@@ -65,7 +65,7 @@ const useStakeSushiToCreamToBentoStrategy = (): StrategyHook => {
     if (!balances) return
 
     setBalances({
-      inputTokenBalance: balances[SUSHI_ADDRESS[ChainId.ETHEREUM]],
+      inputTokenBalance: balances[ZSWAPTOKEN_ADDRESS[ChainId.ETHEREUM]],
       outputTokenBalance: crxSushiBentoBalance,
     })
   }, [balances, setBalances, crxSushiBentoBalance])

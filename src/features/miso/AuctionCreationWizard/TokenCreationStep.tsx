@@ -3,7 +3,7 @@ import { yupResolver } from '@hookform/resolvers/yup'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import Form from 'app/components/Form'
-import { BlocksIcon, MintableTokenIcon, SushiTokenIcon } from 'app/components/Icon'
+import { BlocksIcon, MintableTokenIcon, ZSwapTokenIcon } from 'app/components/Icon'
 import Typography from 'app/components/Typography'
 import useTokenTemplateMap from 'app/features/miso/context/hooks/useTokenTemplateMap'
 import { useStore } from 'app/features/miso/context/store'
@@ -130,7 +130,7 @@ const TokenCreationStep: FC<{ children(isValid: boolean): ReactNode }> = ({ chil
       ),
     },
     {
-      icon: <SushiTokenIcon height={83} width={83} />,
+      icon: <ZSwapTokenIcon height={83} width={83} />,
       value: TokenType.SUSHI,
       label: templateIdToLabel(TokenType.SUSHI),
       description: i18n._(

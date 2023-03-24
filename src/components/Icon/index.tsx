@@ -182,7 +182,7 @@ export const MintableTokenIcon = (props: React.ComponentProps<'svg'>) => {
   )
 }
 
-export const SushiTokenIcon = (props: React.ComponentProps<'svg'>) => {
+export const ZSwapTokenIcon = (props: React.ComponentProps<'svg'>) => {
   return (
     <svg {...props} viewBox="0 0 83 83" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path

@@ -5,10 +5,10 @@ import {
   Currency,
   CurrencyAmount,
   Percent,
-  SUSHI_ADDRESS,
   Trade as V2Trade,
   TradeType,
   WNATIVE_ADDRESS,
+  ZSWAPTOKEN_ADDRESS,
 } from '@zarclays/zswap-core-sdk'
 import { currencyId } from 'app/functions'
 import { tryParseAmount } from 'app/functions/parse'
@@ -51,7 +51,7 @@ export function useSwapActionHandlers(): {
 
   const inputCurrencyId = router.query.inputCurrency || 'ETH'
   const outputCurrencyId =
-    router.query.outputCurrency || (chainId && chainId in SUSHI_ADDRESS ? SUSHI_ADDRESS[chainId] : undefined)
+    router.query.outputCurrency || (chainId && chainId in ZSWAPTOKEN_ADDRESS ? ZSWAPTOKEN_ADDRESS[chainId] : undefined)
 
   const onCurrencySelection = useCallback(
     (field: Field, currency: Currency) => {
@@ -314,7 +314,8 @@ export function queryParametersToSwapState(parsedQs: ParsedQs, chainId: ChainId 
   let inputCurrency = parseCurrencyFromURLParameter(parsedQs.inputCurrency)
   let outputCurrency = parseCurrencyFromURLParameter(parsedQs.outputCurrency)
   const eth = chainId === ChainId.CELO ? WNATIVE_ADDRESS[chainId] : 'ETH'
-  const sushi = chainId === ChainId.BOBA_AVAX ? '0x4200000000000000000000000000000000000023' : SUSHI_ADDRESS[chainId]
+  const sushi =
+    chainId === ChainId.BOBA_AVAX ? '0x4200000000000000000000000000000000000023' : ZSWAPTOKEN_ADDRESS[chainId]
   if (inputCurrency === '' && outputCurrency === '') {
     inputCurrency = eth
     outputCurrency = sushi

@@ -6,11 +6,11 @@ import {
   CurrencyAmount,
   JSBI,
   Price,
-  SUSHI_ADDRESS,
   Trade,
   TradeType,
   WNATIVE_ADDRESS,
   ZERO,
+  ZSWAPTOKEN_ADDRESS,
 } from '@zarclays/zswap-core-sdk'
 import { isAddress, tryParseAmount } from 'app/functions'
 import { useCurrency } from 'app/hooks/Tokens'
@@ -125,7 +125,7 @@ export function queryParametersToSwapState(chainId: ChainId, parsedQs: ParsedQs)
   let inputCurrency = parseCurrencyFromURLParameter(parsedQs.inputCurrency)
   let outputCurrency = parseCurrencyFromURLParameter(parsedQs.outputCurrency)
   const eth = chainId === ChainId.CELO ? WNATIVE_ADDRESS[chainId] : 'ETH'
-  const sushi = SUSHI_ADDRESS[chainId]
+  const sushi = ZSWAPTOKEN_ADDRESS[chainId]
   if (inputCurrency === '' && outputCurrency === '') {
     inputCurrency = eth
     outputCurrency = sushi
@@ -188,9 +188,9 @@ export const useLimitOrderDerivedCurrencies: UseLimitOrderDerivedCurrencies = ()
   const { chainId } = useActiveWeb3React()
   const { inputCurrencyId, outputCurrencyId } = useLimitOrderState()
   const inputCurrency =
-    useCurrency(inputCurrencyId === 'SUSHI' ? SUSHI_ADDRESS[chainId || 1] : inputCurrencyId) ?? undefined
+    useCurrency(inputCurrencyId === 'ZSwap' ? ZSWAPTOKEN_ADDRESS[chainId || 1] : inputCurrencyId) ?? undefined
   const outputCurrency =
-    useCurrency(outputCurrencyId === 'SUSHI' ? SUSHI_ADDRESS[chainId || 1] : outputCurrencyId) ?? undefined
+    useCurrency(outputCurrencyId === 'ZSwap' ? ZSWAPTOKEN_ADDRESS[chainId || 1] : outputCurrencyId) ?? undefined
 
   return useMemo(() => {
     return {

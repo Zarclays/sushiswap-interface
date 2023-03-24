@@ -6,9 +6,9 @@ import {
   FRAX_ADDRESS,
   MIM_ADDRESS,
   NATIVE,
-  SUSHI_ADDRESS,
   USDC_ADDRESS,
   USDT_ADDRESS,
+  ZSWAPTOKEN_ADDRESS,
 } from '@zarclays/zswap-core-sdk'
 import Form from 'app/components/Form'
 import FormFieldHelperText from 'app/components/Form/FormFieldHelperText'
@@ -50,8 +50,8 @@ const AuctionPaymentCurrencyField: FC<AuctionPaymentCurrencyFieldProps> = ({ nam
               {/*@ts-ignore TYPE NEEDS FIXING*/}
               {NATIVE[chainId].symbol}
             </ToggleButtonGroup.Button>
-            {chainId in SUSHI_ADDRESS && (
-              <ToggleButtonGroup.Button value={SUSHI_ADDRESS[chainId]} className="!px-3 h-[36px]">
+            {chainId in ZSWAPTOKEN_ADDRESS && (
+              <ToggleButtonGroup.Button value={ZSWAPTOKEN_ADDRESS[chainId]} className="!px-3 h-[36px]">
                 SUSHI
               </ToggleButtonGroup.Button>
             )}

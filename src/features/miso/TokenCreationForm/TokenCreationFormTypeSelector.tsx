@@ -2,7 +2,7 @@ import { RadioGroup } from '@headlessui/react'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
 import Form from 'app/components/Form'
-import { BlocksIcon, MintableTokenIcon, SushiTokenIcon } from 'app/components/Icon'
+import { BlocksIcon, MintableTokenIcon, ZSwapTokenIcon } from 'app/components/Icon'
 import Typography from 'app/components/Typography'
 import useTokenTemplateMap from 'app/features/miso/context/hooks/useTokenTemplateMap'
 import { TokenType } from 'app/features/miso/context/types'
@@ -38,7 +38,7 @@ const TokenCreationFormTypeSelector: FC<TokenCreationFormTypeSelectorProps> = ()
       ),
     },
     {
-      icon: <SushiTokenIcon height={83} width={83} />,
+      icon: <ZSwapTokenIcon height={83} width={83} />,
       address: tokenTemplateMap?.[TokenType.SUSHI],
       value: TokenType.SUSHI,
       label: templateIdToLabel(TokenType.SUSHI),

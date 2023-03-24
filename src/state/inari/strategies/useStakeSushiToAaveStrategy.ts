@@ -1,7 +1,7 @@
 import { I18n } from '@lingui/core'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { ChainId, SUSHI, SUSHI_ADDRESS } from '@zarclays/zswap-core-sdk'
+import { ChainId, SUSHI, ZSWAPTOKEN_ADDRESS } from '@zarclays/zswap-core-sdk'
 import { AXSUSHI } from 'app/config/tokens/ethereum'
 import { useActiveWeb3React } from 'app/services/web3'
 import { useTokenBalances } from 'app/state/wallet/hooks'
@@ -25,9 +25,9 @@ export const GENERAL = (i18n: I18n): StrategyGeneralInfo => ({
 export const tokenDefinitions: StrategyTokenDefinitions = {
   inputToken: {
     chainId: ChainId.ETHEREUM,
-    address: SUSHI_ADDRESS[ChainId.ETHEREUM],
+    address: ZSWAPTOKEN_ADDRESS[ChainId.ETHEREUM],
     decimals: 18,
-    symbol: 'SUSHI',
+    symbol: 'ZSwap',
   },
   outputToken: {
     chainId: ChainId.ETHEREUM,

@@ -16,9 +16,9 @@ import {
   MINICHEF_ADDRESS,
   MULTICALL2_ADDRESS,
   ROUTER_ADDRESS,
-  SUSHI_ADDRESS,
   TIMELOCK_ADDRESS,
   WNATIVE_ADDRESS,
+  ZSWAPTOKEN_ADDRESS,
 } from '@zarclays/zswap-core-sdk'
 import { LIMIT_ORDER_HELPER_ADDRESS, STOP_LIMIT_ORDER_ADDRESS } from '@zarclays/zswap-limit-order-sdk'
 import ConstantProductPoolArtifact from '@zarclays/zswap-trident/artifacts/contracts/pool/constant-product/ConstantProductPool.sol/ConstantProductPool.json'
@@ -201,7 +201,7 @@ export function useInterfaceMulticall(): Contract | null | undefined {
 
 export function useSushiContract(withSignerIfPossible = true): Contract | null {
   const { chainId } = useActiveWeb3React()
-  return useContract(chainId ? SUSHI_ADDRESS[chainId] : undefined, SUSHI_ABI, withSignerIfPossible)
+  return useContract(chainId ? ZSWAPTOKEN_ADDRESS[chainId] : undefined, SUSHI_ABI, withSignerIfPossible)
 }
 
 export function useMasterChefContract(withSignerIfPossible?: boolean): Contract | null {

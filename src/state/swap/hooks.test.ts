@@ -1,11 +1,11 @@
-import { ChainId, SUSHI_ADDRESS } from '@zarclays/zswap-core-sdk'
+import { ChainId, ZSWAPTOKEN_ADDRESS } from '@zarclays/zswap-core-sdk'
 import { parse } from 'qs'
 
 import { Field } from './actions'
 import { queryParametersToSwapState } from './hooks'
 
 describe('hooks', () => {
-  const sushiAddress = SUSHI_ADDRESS[ChainId.ETHEREUM]
+  const sushiAddress = ZSWAPTOKEN_ADDRESS[ChainId.ETHEREUM]
   describe('#queryParametersToSwapState', () => {
     test('ETH to DAI', () => {
       expect(

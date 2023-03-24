@@ -27,13 +27,13 @@ const useTokenTemplateMap = () => {
       // @ts-ignore TYPE NEEDS FIXING
       [MISO[chainId]?.[CHAIN_KEY[chainId]]?.contracts.FixedToken.address]: TokenType.FIXED,
       // @ts-ignore TYPE NEEDS FIXING
-      [MISO[chainId]?.[CHAIN_KEY[chainId]]?.contracts.SushiToken.address]: TokenType.SUSHI,
+      [MISO[chainId]?.[CHAIN_KEY[chainId]]?.contracts.ZSwapToken.address]: TokenType.SUSHI,
       // @ts-ignore TYPE NEEDS FIXING
       [MISO[chainId]?.[CHAIN_KEY[chainId]]?.contracts.MintableToken.address]: TokenType.MINTABLE,
       // @ts-ignore TYPE NEEDS FIXING
       [TokenType.FIXED]: MISO[chainId]?.[CHAIN_KEY[chainId]]?.contracts.FixedToken,
       // @ts-ignore TYPE NEEDS FIXING
-      [TokenType.SUSHI]: MISO[chainId]?.[CHAIN_KEY[chainId]]?.contracts.SushiToken,
+      [TokenType.SUSHI]: MISO[chainId]?.[CHAIN_KEY[chainId]]?.contracts.ZSwapToken,
       // @ts-ignore TYPE NEEDS FIXING
       [TokenType.MINTABLE]: MISO[chainId]?.[CHAIN_KEY[chainId]]?.contracts.MintableToken,
     }

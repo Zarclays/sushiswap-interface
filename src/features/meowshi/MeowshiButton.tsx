@@ -60,7 +60,7 @@ const MeowshiButton: FC<MeowshiButtonProps> = ({ meowshiState }) => {
     // @ts-ignore TYPE NEEDS FIXING
     let tx
     if (doMeow) {
-      if (currencies[Field.INPUT]?.symbol === 'SUSHI') {
+      if (currencies[Field.INPUT]?.symbol === 'ZSwap') {
         tx = await meowSushi({
           // @ts-ignore TYPE NEEDS FIXING
           value: parseUnits(fields[Field.INPUT], sushiBalance.currency.decimals),
@@ -77,7 +77,7 @@ const MeowshiButton: FC<MeowshiButtonProps> = ({ meowshiState }) => {
         })
       }
     } else {
-      if (currencies[Field.OUTPUT]?.symbol === 'SUSHI') {
+      if (currencies[Field.OUTPUT]?.symbol === 'ZSwap') {
         tx = await unmeowSushi({
           // @ts-ignore TYPE NEEDS FIXING
           value: parseUnits(fields[Field.INPUT], sushiBalance.currency.decimals),

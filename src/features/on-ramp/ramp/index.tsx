@@ -29,7 +29,7 @@ export default function Buy() {
     const widget = new RampInstantSDK({
       // @ts-ignore TYPE NEEDS FIXING
       userAddress: account,
-      hostAppName: 'SUSHI',
+      hostAppName: 'ZSwap',
       // @ts-ignore TYPE NEEDS FIXING
       defaultAsset: DEFAULT_CRYPTO_CURRENCY[chainId],
     })

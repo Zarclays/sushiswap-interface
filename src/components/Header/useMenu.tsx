@@ -1,7 +1,7 @@
 import { BeakerIcon, GlobeIcon, SwitchVerticalIcon, TrendingUpIcon } from '@heroicons/react/outline'
 import { t } from '@lingui/macro'
 import { useLingui } from '@lingui/react'
-import { ChainId, SUSHI_ADDRESS } from '@zarclays/zswap-core-sdk'
+import { ChainId, ZSWAPTOKEN_ADDRESS } from '@zarclays/zswap-core-sdk'
 import { RocketIcon, WalletIcon } from 'app/components/Icon'
 import { Feature } from 'app/enums'
 import { featureEnabled } from 'app/functions'
@@ -58,7 +58,7 @@ const useMenu: UseMenu = () => {
       {
         key: 'add-liquidity',
         title: i18n._(t`Add`),
-        link: `/add/ETH/${SUSHI_ADDRESS[chainId]}`,
+        link: `/add/ETH/${ZSWAPTOKEN_ADDRESS[chainId]}`,
       },
       // {
       //   key: 'remove-liquidity',

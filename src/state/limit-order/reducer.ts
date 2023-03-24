@@ -53,7 +53,7 @@ const initialState: LimitOrderState = {
   typedValue: '',
   limitPrice: '',
   inputCurrencyId: 'ETH',
-  outputCurrencyId: 'SUSHI',
+  outputCurrencyId: 'ZSwap',
   recipient: undefined,
   fromBentoBalance: false,
   limitOrderApprovalPending: '',

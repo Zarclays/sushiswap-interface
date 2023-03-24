@@ -32,7 +32,7 @@ const cases = [
 const currencySelectCases = [
   ['ETH', 'DAI'],
   ['WETH', 'USDC'],
-  ['BAT', 'SUSHI'],
+  ['BAT', 'ZSwap'],
 ]
 
 jest.retryTimes(1)
