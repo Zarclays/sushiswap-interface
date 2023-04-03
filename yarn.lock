@@ -5058,10 +5058,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zarclays/zswap-core@npm:1.0.0":
-  version: 1.0.0
-  resolution: "@zarclays/zswap-core@npm:1.0.0"
-  checksum: 929c3f088582207a669e0e09ac4d71180149eb135734c03ad0eb29683c21228cb9be311bc36ad0c8ef25d68597043ea216caa2b999e4bd97ba21597cbdb07edb
+"@zarclays/zswap-core@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@zarclays/zswap-core@npm:1.0.1"
+  checksum: 668560cde5407527df77e8617216cc291c6d93dac1de543027d1544d49148e21729276aa8291badfbad065e2618dbe56d91026295de3285b1af109b6340641d6
   languageName: node
   linkType: hard
 
@@ -9599,7 +9599,7 @@ __metadata:
 
 "fsevents@patch:fsevents@^2.3.2#~builtin<compat/fsevents>, fsevents@patch:fsevents@~2.3.1#~builtin<compat/fsevents>, fsevents@patch:fsevents@~2.3.2#~builtin<compat/fsevents>":
   version: 2.3.2
-  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=df0bf1"
+  resolution: "fsevents@patch:fsevents@npm%3A2.3.2#~builtin<compat/fsevents>::version=2.3.2&hash=18f3a7"
   dependencies:
     node-gyp: latest
   conditions: os=darwin
@@ -15819,7 +15819,7 @@ __metadata:
 
 "resolve@patch:resolve@^1.1.7#~builtin<compat/resolve>, resolve@patch:resolve@^1.10.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.12.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.14.2#~builtin<compat/resolve>, resolve@patch:resolve@^1.19.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.20.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.21.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.0#~builtin<compat/resolve>, resolve@patch:resolve@^1.22.1#~builtin<compat/resolve>":
   version: 1.22.1
-  resolution: "resolve@patch:resolve@npm%3A1.22.1#~builtin<compat/resolve>::version=1.22.1&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A1.22.1#~builtin<compat/resolve>::version=1.22.1&hash=07638b"
   dependencies:
     is-core-module: ^2.9.0
     path-parse: ^1.0.7
@@ -15832,7 +15832,7 @@ __metadata:
 
 "resolve@patch:resolve@^2.0.0-next.3#~builtin<compat/resolve>":
   version: 2.0.0-next.4
-  resolution: "resolve@patch:resolve@npm%3A2.0.0-next.4#~builtin<compat/resolve>::version=2.0.0-next.4&hash=c3c19d"
+  resolution: "resolve@patch:resolve@npm%3A2.0.0-next.4#~builtin<compat/resolve>::version=2.0.0-next.4&hash=07638b"
   dependencies:
     is-core-module: ^2.9.0
     path-parse: ^1.0.7
@@ -17042,7 +17042,7 @@ __metadata:
     "@web3-react/url": ^8.0.17-beta.0
     "@welldone-software/why-did-you-render": ^6.2.3
     "@zarclays/zswap-bentobox-sdk": 0.0.1-canary.1
-    "@zarclays/zswap-core": 1.0.0
+    "@zarclays/zswap-core": 1.0.1
     "@zarclays/zswap-core-sdk": 0.0.1-canary.1
     "@zarclays/zswap-kashi-sdk": 0.0.1-canary.1
     "@zarclays/zswap-limit-order-pair-list": 0.0.1
@@ -17797,7 +17797,7 @@ __metadata:
 
 "typescript@patch:typescript@^3.9.10#~builtin<compat/typescript>, typescript@patch:typescript@^3.9.5#~builtin<compat/typescript>, typescript@patch:typescript@^3.9.7#~builtin<compat/typescript>":
   version: 3.9.10
-  resolution: "typescript@patch:typescript@npm%3A3.9.10#~builtin<compat/typescript>::version=3.9.10&hash=3bd3d3"
+  resolution: "typescript@patch:typescript@npm%3A3.9.10#~builtin<compat/typescript>::version=3.9.10&hash=a1c5e5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
@@ -17807,7 +17807,7 @@ __metadata:
 
 "typescript@patch:typescript@^4.2.3#~builtin<compat/typescript>, typescript@patch:typescript@^4.4.3#~builtin<compat/typescript>, typescript@patch:typescript@^4.6.2#~builtin<compat/typescript>":
   version: 4.7.4
-  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=65a307"
+  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=a1c5e5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
