@@ -5058,10 +5058,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@zarclays/zswap-core@npm:1.0.0":
-  version: 1.0.0
-  resolution: "@zarclays/zswap-core@npm:1.0.0"
-  checksum: 929c3f088582207a669e0e09ac4d71180149eb135734c03ad0eb29683c21228cb9be311bc36ad0c8ef25d68597043ea216caa2b999e4bd97ba21597cbdb07edb
+"@zarclays/zswap-core@npm:1.0.3":
+  version: 1.0.3
+  resolution: "@zarclays/zswap-core@npm:1.0.3"
+  checksum: 63ede2c74342ecc22fce81d0258772d143025802b62b3c999625212b208c3ce71273a1746d4fa8cf1c2abd79416b3cc2511c13a667b6c28a45eaf6b9242ea2e9
   languageName: node
   linkType: hard
 
@@ -17042,7 +17042,7 @@ __metadata:
     "@web3-react/url": ^8.0.17-beta.0
     "@welldone-software/why-did-you-render": ^6.2.3
     "@zarclays/zswap-bentobox-sdk": 0.0.1-canary.1
-    "@zarclays/zswap-core": 1.0.0
+    "@zarclays/zswap-core": 1.0.3
     "@zarclays/zswap-core-sdk": 0.0.1-canary.1
     "@zarclays/zswap-kashi-sdk": 0.0.1-canary.1
     "@zarclays/zswap-limit-order-pair-list": 0.0.1

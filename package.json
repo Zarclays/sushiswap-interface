@@ -135,7 +135,7 @@
     "@web3-react/url": "^8.0.17-beta.0",
     "@welldone-software/why-did-you-render": "^6.2.3",
     "@zarclays/zswap-bentobox-sdk": "0.0.1-canary.1",
-    "@zarclays/zswap-core": "1.0.0",
+    "@zarclays/zswap-core": "1.0.3",
     "@zarclays/zswap-core-sdk": "0.0.1-canary.1",
     "@zarclays/zswap-kashi-sdk": "0.0.1-canary.1",
     "@zarclays/zswap-limit-order-pair-list": "0.0.1",
